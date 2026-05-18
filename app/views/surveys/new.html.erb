@@ -1,0 +1,29 @@
+<% content_for :title, "New survey" %>
+
+<div class="bg-white border border-slate-200 rounded-lg p-6">
+  <h1 class="text-xl font-semibold text-slate-900 mb-4">Create a new survey</h1>
+
+  <%= form_with model: @survey, local: true, class: "space-y-4" do |f| %>
+    <% if @survey.errors.any? %>
+      <div class="rounded-md bg-red-50 border border-red-200 text-red-800 px-4 py-3 text-sm">
+        <p class="font-medium mb-1"><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</p>
+        <ul class="list-disc list-inside">
+          <% @survey.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :question, class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.text_field :question, autofocus: true, placeholder: "e.g. Do you like Ruby?", class: "block w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500" %>
+      <p class="mt-1 text-xs text-slate-500">Yes/No answers only.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <%= f.submit "Create survey", class: "inline-flex items-center px-4 py-2 rounded-md bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 cursor-pointer" %>
+      <%= link_to "Cancel", surveys_path, class: "text-sm text-slate-600 hover:text-slate-900" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<% content_for :title, @survey.question %>
+
+<div class="bg-white border border-slate-200 rounded-lg p-8">
+  <p class="text-sm text-slate-500 mb-2">Survey</p>
+  <h1 class="text-2xl font-semibold text-slate-900 mb-8"><%= @survey.question %></h1>
+
+  <div class="flex gap-3">
+    <%= button_to "Yes",
+          survey_responses_path(@survey, answer: "yes"),
+          method: :post,
+          class: "flex-1 inline-flex justify-center items-center px-6 py-3 rounded-md bg-emerald-600 text-white text-base font-semibold hover:bg-emerald-700 cursor-pointer" %>
+    <%= button_to "No",
+          survey_responses_path(@survey, answer: "no"),
+          method: :post,
+          class: "flex-1 inline-flex justify-center items-center px-6 py-3 rounded-md bg-rose-600 text-white text-base font-semibold hover:bg-rose-700 cursor-pointer" %>
+  </div>
+
+  <div class="mt-6 text-sm">
+    <%= link_to "Back to surveys", surveys_path, class: "text-slate-600 hover:text-slate-900" %>
+  </div>
+</div>
